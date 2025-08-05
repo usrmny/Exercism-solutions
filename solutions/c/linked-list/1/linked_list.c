@@ -13,9 +13,8 @@ struct list {
 // constructs a new (empty) list
 struct list* list_create(void) {
     struct list* list = malloc(sizeof(struct list));
-    if (list == NULL) {
-        return NULL; 
-    }
+    if (list == NULL) return NULL; 
+	
     list->first = NULL;
     list->last = NULL;
     return list;
@@ -42,9 +41,8 @@ void list_push(struct list* list, ll_data_t item_data) {
     }
 
     struct list_node* n = malloc(sizeof(struct list_node));
-    if (n == NULL) {
-        return;
-    }
+    if (n == NULL) return;
+	
     n->data = item_data;
 	n->next = NULL;
 	n->prev = NULL;
@@ -82,9 +80,8 @@ ll_data_t list_shift(struct list* list) {
 // removes item from back of a list
 ll_data_t list_pop(struct list* list) {
     ll_data_t data = 0;
-    if (list == NULL) {
-        return data;
-    }
+    if (list == NULL) return data;
+	
     printf("%d, %d", list->first->data, list->last->data);
     if (list->first == list->last) {
         data = list->first->data;
@@ -104,14 +101,10 @@ ll_data_t list_pop(struct list* list) {
 
 // inserts item at front of a list
 void list_unshift(struct list* list, ll_data_t item_data) {
-    if (list == NULL) {
-        return;
-    }
+    if (list == NULL) return;
     else {
         struct list_node* node = malloc(sizeof(struct list_node));
-        if (node == NULL) {
-            return; // or handle the error appropriately
-        }
+        if (node == NULL) return;
         node->data = item_data;
         node->prev = NULL;
         node->next = list->first;
@@ -137,7 +130,7 @@ void list_delete(struct list* list, ll_data_t data) {
         else current = current->next;
     }
     if (!has) { 
-		printf("Data not found in the list.\n");
+	printf("Data not found in the list.\n");
         return; 
     }
 
